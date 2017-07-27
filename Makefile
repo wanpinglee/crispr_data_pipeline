@@ -31,6 +31,7 @@ Build:
 	@test -d $(TRIMMER) || (cd $(SRC) && tar -zxvf $(TRIMMER).tar.gz)
 	@test -d $(SGRNG_COUNT) || (cd $(SRC) && tar -zxvf $(SGRNG_COUNT).tar.gz)
 	@test -d $(MAGECK) || (cd $(SRC) && tar -zxvf $(MAGECK).tar.gz)
+	@cd $(MAGECK) && $(PYTHON) setup.py install --prefix=$(MAGECK)
 
 clean:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2 clean
