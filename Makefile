@@ -9,9 +9,9 @@ MAGECK=$(SRC)/mageck-0.5.6
 # all
 all:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2
-	@test -d $(TRIMMER) || tar -zxvf $(TRIMMER).tar.gz # unzip trimmer
-	@test -d $(SGRNG_COUNT) || tar -zxvf $(SGRNG_COUNT).tar.gz # unzip sgRNA_counter
-	@test -d $(MAGECK) || tar -zxvf $(MAGECK).tar.gz # unzip MAGECK
+	@test -d $(TRIMMER) || (cd $(SRC) && tar -zxvf $(TRIMMER).tar.gz) # unzip trimmer
+	@test -d $(SGRNG_COUNT) || (cd $(SRC) && tar -zxvf $(SGRNG_COUNT).tar.gz) # unzip sgRNA_counter
+	@test -d $(MAGECK) || (cd $(SRC) && tar -zxvf $(MAGECK).tar.gz) # unzip MAGECK
 .PHONY: all
 
 clean:
