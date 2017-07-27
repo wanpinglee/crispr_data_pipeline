@@ -1,3 +1,6 @@
 [submodule "src/bowtie2"]
 	path = src/bowtie2
 	url = https://github.com/BenLangmead/bowtie2.git
+[submodule "src/mageck"]
+	path = src/mageck
+	url = https://bitbucket.org/liulab/mageck.git

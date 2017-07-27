@@ -4,7 +4,7 @@ SRC=$(MASTER_DIR)/src
 
 TRIMMER=$(SRC)/CRISPR.sgRNA_read_trimmer
 SGRNG_COUNT=$(SRC)/CRISPR.single_sgRNA_count
-MAGECK=$(SRC)/mageck-0.5.6
+MAGECK=$(SRC)/mageck
 
 PYTHON=`which python`
 python_version_full=$(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) -V 2>&1)))
@@ -30,12 +30,12 @@ Build:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2
 	@test -d $(TRIMMER) || (cd $(SRC) && tar -zxvf $(TRIMMER).tar.gz)
 	@test -d $(SGRNG_COUNT) || (cd $(SRC) && tar -zxvf $(SGRNG_COUNT).tar.gz)
-	@test -d $(MAGECK) || (cd $(SRC) && tar -zxvf $(MAGECK).tar.gz)
-	@cd $(MAGECK) && $(PYTHON) setup.py install --prefix=$(MAGECK)
+	@mkdir -p $(MASTER_DIR)/build
+	@cd $(MAGECK) && $(PYTHON) setup.py install --prefix=$(MASTER_DIR)/build
 
 clean:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2 clean
 	@rm -rf $(TRIMMER)
 	@rm -rf $(SGRNG_COUNT)
-	@rm -rf $(MAGECK)
+	@rm -rf $(MASTER_DIR)/build
 .PHONY: clean
