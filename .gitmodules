@@ -4,3 +4,9 @@
 [submodule "src/mageck"]
 	path = src/mageck
 	url = https://bitbucket.org/liulab/mageck.git
+[submodule "src/fastx_toolkit"]
+	path = src/fastx_toolkit
+	url = https://github.com/agordon/fastx_toolkit.git
+[submodule "src/libgtextutils"]
+	path = src/libgtextutils
+	url = https://github.com/agordon/libgtextutils.git

@@ -12,6 +12,7 @@ python_version_major=$(word 1,${python_version_full})
 python_version_minor=$(word 2,${python_version_full})
 python_version_patch=$(word 3,${python_version_full})
 
+export PKG_CONFIG_PATH=$(MASTER_DIR)/build/lib/pkgconfig
 
 # all
 all:
@@ -28,6 +29,12 @@ all:
 
 Build:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2
+	@cd src/libgtextutils && ./reconf && ./configure --prefix=$(MASTER_DIR)/build
+	$(MAKE) --no-print-directory -C $(SRC)/libgtextutils
+	$(MAKE) --no-print-directory -C $(SRC)/libgtextutils install
+	@cd src/fastx_toolkit && ./reconf && ./configure --prefix=$(MASTER_DIR)/build
+	$(MAKE) --no-print-directory -C $(SRC)/fastx_toolkit
+	$(MAKE) --no-print-directory -C $(SRC)/fastx_toolkit install
 	@test -d $(TRIMMER) || (cd $(SRC) && tar -zxvf $(TRIMMER).tar.gz)
 	@test -d $(SGRNG_COUNT) || (cd $(SRC) && tar -zxvf $(SGRNG_COUNT).tar.gz)
 	@mkdir -p $(MASTER_DIR)/build
@@ -35,6 +42,7 @@ Build:
 
 clean:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2 clean
+	$(MAKE) --no-print-directory -C $(SRC)/fastx_toolkit clean
 	@rm -rf $(TRIMMER)
 	@rm -rf $(SGRNG_COUNT)
 	@rm -rf $(MASTER_DIR)/build

@@ -1,0 +1,9 @@
+# 2017-07-27
+# Human_GeCKOv2_Lib1_with_UID.csv and Human_GeCKOv2_Lib2_with_UID.csv are downloaded from
+# https://media.addgene.org/cms/filer_public/7d/87/7d87eaa7-e940-41bf-bf2f-47b43c7ab905/zhang_human_geckov2_grna_sequences.zip.
+
+# Generate lib1_lib2.fasta
+awk -F',' '{print ">"$3"\n"$4}' Human_GeCKOv2_Lib1_with_UID.csv Human_GeCKOv2_Lib2_with_UID.csv > lib1_lib2.fasta
+
+# Generate csv for CRISPR.single_sgRNA_count
+awk -F',' '{print $3}' Human_GeCKOv2_Lib1_with_UID.csv Human_GeCKOv2_Lib2_with_UID.csv > lib1_lib2.csv
