@@ -5,6 +5,7 @@ SRC=$(MASTER_DIR)/src
 TRIMMER=$(SRC)/CRISPR.sgRNA_read_trimmer
 SGRNG_COUNT=$(SRC)/CRISPR.single_sgRNA_count
 MAGECK=$(SRC)/mageck
+FASTQC=fastqc_v0.11.5
 
 PYTHON=`which python`
 python_version_full=$(wordlist 2,4,$(subst ., ,$(shell $(PYTHON) -V 2>&1)))
@@ -39,6 +40,8 @@ Build:
 	@test -d $(SGRNG_COUNT) || (cd $(SRC) && tar -zxvf $(SGRNG_COUNT).tar.gz)
 	@mkdir -p $(MASTER_DIR)/build
 	@cd $(MAGECK) && $(PYTHON) setup.py install --prefix=$(MASTER_DIR)/build
+	@test -d $(FASTQC) || (cd $(SRC) && tar -zxvf $(FASTQC).tar.gz)
+	@chmod 755 $(SRC)/$(FASTQC)/fastqc
 
 clean:
 	$(MAKE) --no-print-directory -C $(SRC)/bowtie2 clean
@@ -46,4 +49,5 @@ clean:
 	@rm -rf $(TRIMMER)
 	@rm -rf $(SGRNG_COUNT)
 	@rm -rf $(MASTER_DIR)/build
+	@rm -rf $(FASTQC)
 .PHONY: clean
