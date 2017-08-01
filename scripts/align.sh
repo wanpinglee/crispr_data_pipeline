@@ -80,19 +80,19 @@ sh $SCRIPT_DIR/ref_build.sh $REF
 
 ###### QC ######
 # FastQC
-mkdir -p $OUT_DIR/$FILENAME/
-echo "cat $FQ | $FASTQC stdin --outdir=$OUT_DIR/$FILENAME/"
-cat $FQ | $FASTQC stdin --outdir=$OUT_DIR/$FILENAME/
+#mkdir -p $OUT_DIR/$FILENAME/
+#echo "cat $FQ | $FASTQC stdin --outdir=$OUT_DIR/$FILENAME/"
+#cat $FQ | $FASTQC stdin --outdir=$OUT_DIR/$FILENAME/
 
 # Quality filter
 echo "$Q_FILTER -v -Q33 -q 25 -p 50 -i $FQ -o $PREFIX.filtered.fastq"
-$Q_FILTER -v -Q33 -q 25 -p 50 -i $FQ -o $PREFIX.filtered.fastq
+#$Q_FILTER -v -Q33 -q 25 -p 50 -i $FQ -o $PREFIX.filtered.fastq
 
 
 ###### sgRNA Trimmer ######
 FQ_READ_COUNT=`wc -l $PREFIX.filtered.fastq | awk '{print $1}'` # Note the number should be divided by 4.
-echo "python $TRIMMER/trim_reads.py $PREFIX.filtered.fastq $SGRNA_PREFIX $MISMATCHS $SGRNA_LENGTH $FQ_READ_COUNT $PREFIX.trimmed"
-python $TRIMMER $PREFIX.filtered.fastq $SGRNA_PREFIX $MISMATCHS $SGRNA_LENGTH $FQ_READ_COUNT $PREFIX.trimmed
+#echo "python $TRIMMER/trim_reads.py $PREFIX.filtered.fastq $SGRNA_PREFIX $MISMATCHS $SGRNA_LENGTH $FQ_READ_COUNT $PREFIX.trimmed"
+#python $TRIMMER $PREFIX.filtered.fastq $SGRNA_PREFIX $MISMATCHS $SGRNA_LENGTH $FQ_READ_COUNT $PREFIX.trimmed
 
 
 ###### Alignment ######
