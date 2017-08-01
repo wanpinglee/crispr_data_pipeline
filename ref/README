@@ -9,4 +9,4 @@ awk -F',' '{print ">"$3"\n"$4}' Human_GeCKOv2_Lib1_with_UID.csv Human_GeCKOv2_Li
 awk -F',' '{print $4","$3}' Human_GeCKOv2_Lib1_with_UID.csv Human_GeCKOv2_Lib2_with_UID.csv > lib1_lib2.csv
 
 # Generate GAGeCK sgRNA and gene table
-awk -F',' 'BEGIN{print "sgRNA\tgene"}{print $3"\t"$2}' Human_GeCKOv2_Lib1_with_UID.csv Human_GeCKOv2_Lib2_with_UID.csv > lib1_lib2.mageck.txt
+awk -F',' 'BEGIN{print "sgRNA,gene"}{print $3","$2}' Human_GeCKOv2_Lib1_with_UID.csv Human_GeCKOv2_Lib2_with_UID.csv > lib1_lib2.mageck.csv
