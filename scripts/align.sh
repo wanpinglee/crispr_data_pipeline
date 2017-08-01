@@ -81,8 +81,8 @@ sh $SCRIPT_DIR/ref_build.sh $REF
 ###### QC ######
 # FastQC
 mkdir -p $OUT_DIR/$FILENAME/
-echo "$FASTQC -f $FQ --outdir=$OUT_DIR/"
-$FASTQC -f $FQ --outdir=$OUT_DIR/
+echo "cat $FQ | $FASTQC stdin --outdir=$OUT_DIR/$FILENAME/"
+cat $FQ | $FASTQC stdin --outdir=$OUT_DIR/$FILENAME/
 
 # Quality filter
 echo "$Q_FILTER -v -Q33 -q 25 -p 50 -i $FQ -o $PREFIX.filtered.fastq"
